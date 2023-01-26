@@ -1,0 +1,17 @@
+﻿<div class="container" id="cont" >
+  <div class="row gx-5 gy-5" id="row">
+
+        @foreach (var item in Model)
+        {
+                <div class="col-md-3 col-sm-6" id="@item.Name">
+                     <div class="card" style="width: 18rem;"><a asp-controller="Films" asp-action="Details" asp-route-id="@item.Id">
+                          <img class="card-img-top" src=@item.Image alt=@item.Name width="200" height="300"></a>
+                          <div class="card-body text-center">
+                        <h5 class="card-title">@item.Name</h5>
+                                <p class="card-text"><b>Genre: </b>@item.Genre</p>
+                      </div>
+                     </div>
+                </div>
+        }
+    </div>
+</div>

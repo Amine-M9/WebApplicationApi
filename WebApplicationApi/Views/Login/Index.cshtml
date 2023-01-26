@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="section " role="form">
+ <h1 class="title is-1 text-center">Login</h1>
+ <br /> <br />
+<div class="content align-items-center">
+    <form method="post">
+<div class="row d-flex justify-content-center">
+<div class="form-group col-md-4 justify-content-center">
+<label for="exampleInputEmail1">Email</label>
+ <div class=" input-group col-md-3">
+    <div class="input-group-prepend">
+    <span class="input-group-text bg-primary text-white" id="basic-addon1"><i class="bi bi-envelope-at-fill"></i></span>
+  </div>
+    <input type="email" name="Email" class="form-control" autoComplete="email" aria-describedby="emailHelp" placeholder="example@example.com" required>
+  </div>
+  </div>
+  </div>
+
+   <br />
+   <div class="row d-flex justify-content-center">
+ <div class="form-group col-md-4">
+    <label for="exampleInputPassword1">Password</label>
+    <div class=" input-group col-md-4">
+    <div class="input-group-prepend">
+    <span class="input-group-text bg-primary text-white" id="basic-addon1"><i class="bi bi-shield-lock-fill"></i></span>
+  </div>
+    <input type="password" name="Password" class="form-control" placeholder="*******" autoComplete="password" placeholder="Password" required>
+  </div>
+  </div>
+  </div>
+
+  <br /> <br />
+ <div class="form-group text-center">
+     
+         <button type="submit" class="btn btn-primary" asp-controller="Login" asp-action="Logs">
+                          Connexion <i class="bi bi-box-arrow-in-right"></i></button>
+              
+                      
+ </div>
+     </form>
+</div>
+</div>
+
+
+

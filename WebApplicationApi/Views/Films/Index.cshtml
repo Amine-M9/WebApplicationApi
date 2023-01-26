@@ -1,0 +1,103 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Pagination pagination = new Pagination();
+    int PageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pagination = ViewBag.Pager;
+        PageNo = pagination.CurrentPage;
+    }
+}
+
+
+@model IEnumerable<Films>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<h1>Movies</h1>
+
+<br />
+
+@using (Html.BeginForm())
+{
+        <div class="border p-4">
+        <!-- Copy this code to have a working example -->
+        <div class="container d-flex justify-content-center">
+          <div class ="row ">
+            <div class="col-md-9">
+              <div class="form-outline">
+                        @Html.TextBox("SearchString",null, new { @class = "form-control text-center", @placeholder="Rechercher un film"})
+              </div>
+            </div>
+            <div class="col-md-3">
+                  <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+          </div>
+        </div>
+      </div>
+}
+<br />
+
+<partial name="FragmentFilm"/>
+<br />
+<nav >
+    @if (pagination.TotalPages > 0)
+    {
+            <ul class="pagination justify-content-end">
+            @if (pagination.CurrentPage > 1)
+            {
+                        <li>
+                             <a class="page-link" asp-controller="Films" asp-action="Index" asp-route-pg="@(pagination.CurrentPage-1)">Précédent</a>
+                        </li>
+            }
+            @for (var pg = pagination.StartPage; pg<= pagination.EndPage; pg++)
+            {
+                <li class="page-item @(pg == pagination.CurrentPage?"active":"")">
+                            <a class="page-link" asp-controller="Films" asp-action="Index" asp-route-pg="@pg">@pg</a>
+                 </li>
+            }
+            @if (pagination.CurrentPage < pagination.EndPage)
+            {
+                                <li >
+                                                <a class="page-link" asp-controller="Films" asp-action="Index" asp-route-pg="@(pagination.CurrentPage+1)">Suivant</a>
+                </li>
+            }
+        </ul>
+        
+               
+      
+    }
+</nav>
+
+
+
+<script type="text/javascript">
+    var searchString = "Test";
+
+       $(function () {
+           $('input.largetext').focus();
+       });
+
+       $(function () {
+           $("#thisText").keyup(myKeyUp);
+       });
+   function myKeyUp(eventInstance) {
+    var myURL = '@Url.Action("Index")';
+    //alert($(this).val());
+    $.ajax({
+        url: myURL,
+        type: 'POST',
+        data: { searchString: $(this).val() },
+        success: function(result) {
+            // do something with the result returned by the controller action
+        }
+    });
+}
+
+   </script>
+  
+
